@@ -4,6 +4,16 @@ This boilerplate, as its name implies, uses clean architecture. The logic and th
 
 
 
+## Prepare
+
+Install all project dependencies (including sub projects) 
+
+```shell
+pnpm install
+```
+
+
+
 ## Development
 
 ### Web NextJS
