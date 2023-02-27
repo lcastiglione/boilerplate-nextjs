@@ -1,0 +1,4 @@
+﻿packages:
+- "core/*"
+- "infra/*"
+- "ui/web/nextjs/*"
