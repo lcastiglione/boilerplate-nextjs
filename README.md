@@ -14,6 +14,14 @@ pnpm install
 
 
 
+Code documentation report
+
+```shell
+pnpm test
+```
+
+This 
+
 ## Development
 
 ### Web NextJS
