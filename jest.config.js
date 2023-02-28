@@ -6,7 +6,7 @@
     [
       'jest-html-reporters',
       {
-        publicPath: './tests-report',
+        publicPath: './reports/tests',
         filename: 'report.html',
         openReport: true,
       },
