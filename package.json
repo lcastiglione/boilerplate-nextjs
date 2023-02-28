@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test:repo": "jest",
+    "code:doc": "typedoc"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,8 @@
     "standard": "^17.0.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
+    "typedoc": "^0.23.26",
+    "typedoc-plugin-missing-exports": "^1.0.0",
     "typescript": "^4.9.5"
   }
 }
