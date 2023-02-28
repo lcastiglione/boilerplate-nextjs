@@ -10,6 +10,10 @@ export abstract class ValueObject<T extends ValueObjectProps> {
     this.props = baseProps
   }
 
+  protected static create<T extends ValueObjectProps>(this: new (props: T) => ValueObject<T>, props: T): ValueObject<T> {
+    return new this(props)
+  }
+
   public equals(vo?: ValueObject<T>): boolean {
     if (vo === null || vo === undefined) {
       return false
