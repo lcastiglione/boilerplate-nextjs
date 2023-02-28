@@ -7,7 +7,6 @@ export abstract class ValueObject<T extends ValueObjectProps> {
     const baseProps: any = {
       ...props,
     }
-
     this.props = baseProps
   }
 
@@ -19,5 +18,10 @@ export abstract class ValueObject<T extends ValueObjectProps> {
       return false
     }
     return JSON.stringify(this.props) === JSON.stringify(vo.props)
+  }
+
+  public clone(): ValueObject<T> {
+    const clonedProps: T = JSON.parse(JSON.stringify(this.props))
+    return new (this.constructor as any)(clonedProps)
   }
 }
