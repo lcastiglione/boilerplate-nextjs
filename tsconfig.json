@@ -1,0 +1,14 @@
+﻿{
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "skipLibCheck": true, //Evita que se haga la documentación de la carpeta node_modules
+    "module": "commonjs",
+    "target": "es6",
+    "baseUrl": ".",
+    "types": ["jest"],
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
