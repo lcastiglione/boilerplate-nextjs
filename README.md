@@ -6,21 +6,29 @@ This boilerplate, as its name implies, uses clean architecture. The logic and th
 
 ## Prepare
 
-Install all project dependencies (including sub projects) 
+### Installa dependencies (including sub projects) 
 
 ```shell
 pnpm install
 ```
 
-
-
-Code documentation report
+### Tests report
 
 ```shell
-pnpm test
+pnpm test:repo
 ```
 
-This 
+This report is located on the path `reports/tests`
+
+### Documentation
+
+```shell
+pnpm code:doc
+```
+
+This documentation is located on the path `reports/docs/` (There is only the 'core' and 'infrastructure' documentation).
+
+
 
 ## Development
 
