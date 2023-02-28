@@ -1,7 +1,6 @@
 ﻿import { Either } from '../Either';
 import { EitherAsync } from '../EitherAsync';
 
-//TODO: Revisar bien porque alunos test no están bien hechos y otros faltan
 describe('EitherAsync', () => {
   describe('map', () => {
     it('should apply the function to the right value and return a new EitherAsync', async () => {
@@ -22,23 +21,41 @@ describe('EitherAsync', () => {
   });
 
   describe('flatMap', () => {
-    /*
-    it('should apply the function to the right value and return the resulting EitherAsync', async () => {
-      const result = await EitherAsync.fromEither(Either.right(2))
-        .flatMap((x) => EitherAsync.fromEither(Either.right(x * 2)))
-        .run();
+    it('should transform the right value of EitherAsync and return a new instance of EitherAsync', async () => {
+      const initialEitherAsync = EitherAsync.fromEither<string, number>(
+        Either.right(5)
+      );
+      const fn = (x: number): Promise<Either<string, number>> =>
+        EitherAsync.fromEither<string, number>(Either.right(x * 2)).run();
 
-      expect(result).toEqual(Either.right(4));
+      const expectedEitherAsync = EitherAsync.fromEither<string, number>(
+        Either.right(10)
+      );
+
+      const resultEitherAsync = initialEitherAsync.flatMap(fn);
+
+      expect(await resultEitherAsync.run()).toEqual(
+        await expectedEitherAsync.run()
+      );
     });
 
-    it('should return a new EitherAsync with the same left value if called on a left EitherAsync', async () => {
-      const result = await EitherAsync.fromEither(Either.left('error'))
-        .flatMap((x) => EitherAsync.fromEither(Either.right(x * 2)))
-        .run();
+    it('should return the same left value if the EitherAsync is left', async () => {
+      const initialEitherAsync = EitherAsync.fromEither<string, number>(
+        Either.left('error')
+      );
+      const fn = (x: number): Promise<Either<string, number>> =>
+        EitherAsync.fromEither<string, number>(Either.right(x * 2)).run();
 
-      expect(result).toEqual(Either.left('error'));
+      const expectedEitherAsync = EitherAsync.fromEither<string, number>(
+        Either.left('error')
+      );
+
+      const resultEitherAsync = initialEitherAsync.flatMap(fn);
+
+      expect(await resultEitherAsync.run()).toEqual(
+        await expectedEitherAsync.run()
+      );
     });
-    */
   });
 
   describe('mapLeft', () => {
@@ -60,27 +77,41 @@ describe('EitherAsync', () => {
   });
 
   describe('flatMapLeft', () => {
-    /*
-    it('should apply the function to the left value and return the resulting EitherAsync', async () => {
-      const result = await EitherAsync.fromEither(Either.left('error'))
-        .flatMapLeft((x) =>
-          EitherAsync.fromEither(Either.left(x.toUpperCase()))
-        )
-        .run();
+    it('should transform the left value of EitherAsync and return a new instance of EitherAsync', async () => {
+      const initialEitherAsync = EitherAsync.fromEither<string, number>(
+        Either.left('error')
+      );
+      const fn = (x: string): Promise<Either<string, number>> =>
+        EitherAsync.fromEither<string, number>(Either.left(`[${x}]`)).run();
 
-      expect(result).toEqual(Either.left('ERROR'));
+      const expectedEitherAsync = EitherAsync.fromEither<string, number>(
+        Either.left('[error]')
+      );
+
+      const resultEitherAsync = initialEitherAsync.flatMapLeft(fn);
+
+      expect(await resultEitherAsync.run()).toEqual(
+        await expectedEitherAsync.run()
+      );
     });
 
-    it('should return a new EitherAsync with the same right value if called on a right EitherAsync', async () => {
-      const result = await EitherAsync.fromEither(Either.right(2))
-        .flatMapLeft((x) =>
-          EitherAsync.fromEither(Either.left(x.toUpperCase()))
-        )
-        .run();
+    it('should return the same right value if the EitherAsync is right', async () => {
+      const initialEitherAsync = EitherAsync.fromEither<string, number>(
+        Either.right(5)
+      );
+      const fn = (x: string): Promise<Either<string, number>> =>
+        EitherAsync.fromEither<string, number>(Either.left(`[${x}]`)).run();
 
-      expect(result).toEqual(Either.right(2));
+      const expectedEitherAsync = EitherAsync.fromEither<string, number>(
+        Either.right(5)
+      );
+
+      const resultEitherAsync = initialEitherAsync.flatMapLeft(fn);
+
+      expect(await resultEitherAsync.run()).toEqual(
+        await expectedEitherAsync.run()
+      );
     });
-    */
   });
 
   describe('run', () => {
@@ -138,11 +169,8 @@ describe('EitherAsync', () => {
 
       try {
         await eitherAsync.run();
-      } catch (error) {
-        if (error instanceof Error) {
-          expect(error.message).toBe(errorMessage);
-        }
-        console.log('No se está ejecutando el error: ', error);
+      } catch (error: any) {
+        expect(error.message).toBe(errorMessage);
       }
     });
   });
