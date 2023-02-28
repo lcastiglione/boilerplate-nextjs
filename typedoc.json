@@ -1,0 +1,5 @@
+﻿{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": ["packages/core","packages/infra"],
+    "out": "reports/docs"
+}
