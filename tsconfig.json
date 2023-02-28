@@ -1,5 +1,6 @@
 ﻿{
   "exclude": ["node_modules"],
+  "include": ["packages/core","packages/infra"],
   "compilerOptions": {
     "skipLibCheck": true, //Evita que se haga la documentación de la carpeta node_modules
     "module": "commonjs",

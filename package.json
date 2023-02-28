@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:repo": "jest",
+    "test": "jest",
+    "test:core": "jest packages/core",
+    "test:core:cov": "jest packages/core --coverage",
+    "test:core:watch": "jest packages/core --watch",
+    "test:infra": "jest packages/infra",
+    "test:infra:cov": "jest packages/infra --coverage",
+    "test:infra:watch": "jest packages/infra --watch",
     "code:doc": "typedoc"
   },
   "keywords": [],

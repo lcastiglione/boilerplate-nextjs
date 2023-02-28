@@ -1,6 +1,7 @@
 ﻿module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
+  coverageDirectory:'./reports/coverage',
   reporters: [
     'default',
     [
@@ -8,7 +9,7 @@
       {
         publicPath: './reports/tests',
         filename: 'report.html',
-        openReport: true,
+        openReport: false,
       },
     ],
   ],
