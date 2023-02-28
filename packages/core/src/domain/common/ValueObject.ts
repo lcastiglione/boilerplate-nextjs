@@ -2,7 +2,7 @@
  * Interfaz que define un índice de propiedad genérico para el la clase `ValueObject`.
  */
 interface ValueObjectProps {
-  [index: string]: any
+  [index: string]: any;
 }
 
 /**
@@ -19,8 +19,8 @@ export abstract class ValueObject<T extends ValueObjectProps> {
   constructor(protected props: T) {
     const baseProps: any = {
       ...props,
-    }
-    this.props = baseProps
+    };
+    this.props = baseProps;
   }
 
   /**
@@ -31,7 +31,7 @@ export abstract class ValueObject<T extends ValueObjectProps> {
    * @throws Un error si una subclase no implementa `create`.
    */
   public static create(props: ValueObjectProps): ValueObject<ValueObjectProps> {
-    throw new Error('create not defined')
+    throw new Error('create not defined');
   }
 
   /**
@@ -53,7 +53,7 @@ export abstract class ValueObject<T extends ValueObjectProps> {
    * @returns Un nuevo `ValueObject` que es una copia de este `ValueObject`.
    */
   public clone(): ValueObject<T> {
-    const clonedProps: T = JSON.parse(JSON.stringify(this.props))
-    return new (this.constructor as any)(clonedProps)
+    const clonedProps: T = JSON.parse(JSON.stringify(this.props));
+    return new (this.constructor as any)(clonedProps);
   }
 }
