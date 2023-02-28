@@ -4,9 +4,9 @@ node_modules
 .pnp.js
 *lock.yaml
 
-# testing
+# testing y docs
 coverage
-tests-report
+reports
 
 # next.js
 .next/
