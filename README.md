@@ -6,21 +6,55 @@ This boilerplate, as its name implies, uses clean architecture. The logic and th
 
 ## Prepare
 
-### Installa dependencies (including sub projects) 
+### Install dependencies (including sub projects) 
 
 ```shell
 pnpm install
 ```
 
+
+
+## Tests
+
 ### Tests report
 
 ```shell
-pnpm test:repo
+pnpm test
 ```
 
 This report is located on the path `reports/tests`
 
-### Documentation
+### Test Core
+
+```shell
+pnpm test:core
+pnpm test:core:cov
+pnpm test:core:watch
+```
+
+- Unit test
+- Unit test with coverage (This report is located on the path `reports/coverage`)
+- Unit tests are watched
+
+
+
+### Test Infraestructure
+
+```shell
+pnpm test:infra
+pnpm test:infra:cov
+pnpm test:infra:watch
+```
+
+- Unit test
+- Unit test with coverage (This report is located on the path `reports/coverage`)
+- Unit tests are watched
+
+
+
+## Documentation
+
+### Core and Infra code documentation
 
 ```shell
 pnpm code:doc
@@ -50,21 +84,3 @@ npx nx start nextjs
 ```
 
 
-
-## Tests
-
-### Core
-
-```shell
-npx nx test core
-npx nx test:watch core
-npx nx test:cov core
-```
-
-### Infra
-
-```shell
-npx nx test infra
-npx nx test:watch infra
-npx nx test:cov infra
-```
