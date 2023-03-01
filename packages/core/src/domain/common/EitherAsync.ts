@@ -13,37 +13,37 @@ export class EitherAsync<L, R> {
   ) {}
 
   /**
-   * Convierte el valor de Right a través de la función que se pasa por parámetro en forma asincrónica.
+   * Transforma un valor Right a través de una función de mapeo que se pasa por parámetro en forma asincrónica.
    *
-   * @param fn Una función que procesa el valor de `Right`.
-   * @returns Devuelve un objeto `EitherAsync` que contiene el resultado de la aplicación de la función `fn`. Si no existe un valor `Right`, devuelve un objeto `Either` con un error.
+   * @param fn Función que transforma el valor de Right
+   * @returns Objeto EitherAsync con el valor transformado o un error si no existe valor Right para transformar.
    */
   map<T>(fn: (r: R) => T): EitherAsync<L, T> {
     return this.flatMap(async (r) => Either.right(fn(r)));
   }
 
-  /**
-   * Mismo funcionamiento que `map` pero para valores `Either` anidados.
+ /**
+   * Transforma un valor Right a través de una función de mapeo que se pasa por parámetro. `flat` hace referencia a que 'aplana' el resultado porque devuelve el objeto contenido en el objeto Either resultante del mapeo.
    *
-   * @param fn Una función que procesa el valor de `Right`.
-   * @returns Devuelve un objeto `EitherAsync` que contiene el resultado de la aplicación de la función `fn`. Si no existe un valor `Right`, devuelve un objeto `Either` con un error.
+   * @param fn Función que transforma el valor de Right
+   * @returns El valor de Right transformador o un error si no existe valor Right para transformar.
    */
   flatMap<T>(fn: (right: R) => Promise<Either<L, T>>): EitherAsync<L, T> {
     return new EitherAsync<L, T>(async () => {
       const value = await this.promiseValue();
 
       return value.fold(
-        async (rightValue) => Either.left<L, T>(rightValue),
+        async (leftValue) => Either.left<L, T>(leftValue),
         (rightValue) => fn(rightValue)
       );
     });
   }
 
-  /**
-   * Mismo funcionamiento que `flatMap` pero para valores `Left`.
+   /**
+   * Transforma un valor Left a través de una función de mapeo que se pasa por parámetro. `flat` hace referencia a que 'aplana' el resultado porque devuelve el objeto contenido en el objeto Either resultante del mapeo.
    *
-   * @param fn Una función que procesa el valor de `Left`.
-   * @returns Devuelve un objeto `EitherAsync` que contiene el resultado de la aplicación de la función `fn`. Si no existe un valor `Left`, devuelve un objeto `Either` con un error.
+   * @param fn Función que transforma el valor de Left.
+   * @returns El valor de Left transformador o un error si no existe valor Left para transformar.
    */
   flatMapLeft<T>(fn: (left: L) => Promise<Either<T, R>>): EitherAsync<T, R> {
     return new EitherAsync<T, R>(async () => {
@@ -57,10 +57,10 @@ export class EitherAsync<L, R> {
   }
 
   /**
-   * Mismo funcionamiento que `map` pero para valores `Left`.
+   * Transforma un valor Left a través de una función de mapeo que se pasa por parámetro en forma asincrónica.
    *
-   * @param fn Una función que procesa el valor de `Left`.
-   * @returns Devuelve un objeto `EitherAsync` que contiene el resultado de la aplicación de la función `fn`. Si no existe un valor `Left`, devuelve un objeto `Either` con un error.
+   * @param fn Función que transforma el valor de Left
+   * @returns Objeto EitherAsync con el valor transformado o un error si no existe valor Left para transformar.
    */
   mapLeft<T>(fn: (l: L) => T): EitherAsync<T, R> {
     return this.flatMapLeft(async (l) => Either.left(fn(l)));

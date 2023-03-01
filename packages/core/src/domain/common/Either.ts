@@ -1,12 +1,12 @@
 ﻿/**
  * Tipo genérico de una situación de error. Representa el valor del lado izquierdo de un tipo "Either".
  */
-type Left<L> = { kind: 'left'; leftValue: L };
+type Left<L> = { tag: 'left'; leftValue: L };
 
 /**
  * Tipo genérico se una situación satisfactoria. Representa el valor del lado derecho de un tipo "Either".
  */
-type Right<R> = { kind: 'right'; rightValue: R };
+type Right<R> = { tag: 'right'; rightValue: R };
 
 /**
  * Representa un tipo de datos que puede ser uno de dos valores posibles: un valor izquierdo de tipo L, o un valor derecho de tipo R.
@@ -29,7 +29,7 @@ export class Either<L, R> {
    * @returns 'true' si el valor actual contiene un error.
    */
   isLeft(): boolean {
-    return this.value.kind === 'left';
+    return this.value.tag === 'left';
   }
 
   /**
@@ -38,7 +38,7 @@ export class Either<L, R> {
    * @returns 'true' si el valor actual es satisfactorio.
    */
   isRight(): boolean {
-    return this.value.kind === 'right';
+    return this.value.tag === 'right';
   }
 
   /**
@@ -49,7 +49,7 @@ export class Either<L, R> {
    * @returns El valor de ejecutar la función `leftFn` o `rightFn`.
    */
   fold<T>(leftFn: (left: L) => T, rightFn: (right: R) => T): T {
-    switch (this.value.kind) {
+    switch (this.value.tag) {
       case 'left':
         return leftFn(this.value.leftValue);
       case 'right':
@@ -71,20 +71,20 @@ export class Either<L, R> {
   }
 
   /**
-   * Convierte el valor de Right a través de la función que se pasa por parámetro.
+   * Transforma un valor Right a través de una función de mapeo que se pasa por parámetro.
    *
-   * @param fn Función que procesa el valor de Right
-   * @returns Devuelve error si no existe valor Right para procesar o el valor Right procesado si existe.
+   * @param fn Función que transforma el valor de Right
+   * @returns Objeto Either con el valor transformado o un error si no existe valor Right para transformar.
    */
   map<T>(fn: (r: R) => T): Either<L, T> {
     return this.flatMap((r) => Either.right(fn(r)));
   }
 
   /**
-   * Mismo funcionamiento que map pero para valores Either anidados
+   * Transforma un valor Right a través de una función de mapeo que se pasa por parámetro. `flat` hace referencia a que 'aplana' el resultado porque devuelve el objeto contenido en el objeto Either resultante del mapeo.
    *
-   * @param fn Función que procesa el valor de Right
-   * @returns Devuelve error si no existe valor Right para procesar o el valor Right procesado si existe.
+   * @param fn Función que transforma el valor de Right
+   * @returns El valor de Right transformador o un error si no existe valor Right para transformar.
    */
   flatMap<T>(fn: (right: R) => Either<L, T>): Either<L, T> {
     return this.fold(
@@ -121,7 +121,7 @@ export class Either<L, R> {
    * @returns Nuevo objeto Either con el valor Left cargado.
    */
   static left<L, R>(value: L) {
-    return new Either<L, R>({ kind: 'left', leftValue: value });
+    return new Either<L, R>({ tag: 'left', leftValue: value });
   }
 
   /**
@@ -131,6 +131,6 @@ export class Either<L, R> {
    * @returns Nuevo objeto Either con el valor Right cargado.
    */
   static right<L, R>(value: R) {
-    return new Either<L, R>({ kind: 'right', rightValue: value });
+    return new Either<L, R>({ tag: 'right', rightValue: value });
   }
 }

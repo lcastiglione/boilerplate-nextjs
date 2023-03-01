@@ -1,29 +1,29 @@
 ﻿import { Either } from '../Either';
 
 export interface ApiFailure {
-  kind: 'ApiFailure';
+  tag: 'ApiFailure';
   statusCode: number;
 }
 
 export interface UnexpectedFailure {
-  kind: 'UnexpectedFailure';
+  tag: 'UnexpectedFailure';
   error: Error;
 }
 
 export interface AnonymousUserFailure {
-  kind: 'AnonymousUserFailure';
+  tag: 'AnonymousUserFailure';
 }
 
 type ProcessFailure = ApiFailure | UnexpectedFailure | AnonymousUserFailure;
 
 function createApiFailure(code: number): Either<ApiFailure, number> {
-  return Either.left({ kind: 'ApiFailure', statusCode: code });
+  return Either.left({ tag: 'ApiFailure', statusCode: code });
 }
 
 describe('Either Class', () => {
   describe('isLeft and isRight', () => {
     it('should return isLeft equal to true for a left value', () => {
-      const result = Either.left({ kind: 'error' });
+      const result = Either.left({ tag: 'error' });
 
       expect(result.isLeft()).toBeTruthy();
       expect(result.isRight()).toBeFalsy();
@@ -39,10 +39,10 @@ describe('Either Class', () => {
 
   describe('fold', () => {
     it('should return expected left for a left value', () => {
-      const result = Either.left({ kind: 'error1' });
+      const result = Either.left({ tag: 'error1' });
 
       result.fold(
-        (error) => expect(error.kind).toEqual('error1'),
+        (error) => expect(error.tag).toEqual('error1'),
         () => fail('should be error')
       );
     });
@@ -59,7 +59,7 @@ describe('Either Class', () => {
 
   describe('getOrElse', () => {
     it('should getOrElse return default value for left', () => {
-      const result = Either.left({ kind: 'error1' });
+      const result = Either.left({ tag: 'error1' });
 
       expect(result.getOrElse(0)).toEqual(0);
     });
@@ -77,7 +77,7 @@ describe('Either Class', () => {
       const mappedResult = result.map((value) => value * 2);
 
       mappedResult.fold(
-        (error) => expect(error.kind).toEqual('ApiFailure'),
+        (error) => expect(error.tag).toEqual('ApiFailure'),
         () => fail('should be error')
       );
     });
@@ -99,7 +99,7 @@ describe('Either Class', () => {
       const mappedResult = result.flatMap((value) => Either.right(value * 2));
 
       mappedResult.fold(
-        (error) => expect(error.kind).toEqual('ApiFailure'),
+        (error) => expect(error.tag).toEqual('ApiFailure'),
         () => fail('should be error')
       );
     });
@@ -119,7 +119,7 @@ describe('Either Class', () => {
     it('should throw an error when called on a left value', () => {
       const leftValue = Either.left('error message');
       expect(() => leftValue.getOrThrow()).toThrow(
-        'An error has ocurred: {"kind":"left","leftValue":"error message"}'
+        'An error has ocurred: {"tag":"left","leftValue":"error message"}'
       );
     });
 
