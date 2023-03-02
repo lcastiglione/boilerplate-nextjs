@@ -1,5 +1,10 @@
 ﻿{
-    "$schema": "https://typedoc.org/schema.json",
-    "entryPoints": ["packages/core","packages/infra"],
-    "out": "reports/docs"
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPointStrategy": "expand",
+  "entryPoints": ["packages/core", "packages/infra"],
+  "out": "reports/docs",
+  "plugin": ["typedoc-theme-hierarchy"],
+  "theme": "hierarchy",
+  "tsconfig": "./tsconfig.json",
+  "name": "Boilerplate NextJS"
 }
