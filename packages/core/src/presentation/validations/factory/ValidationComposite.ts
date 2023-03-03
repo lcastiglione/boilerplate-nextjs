@@ -2,7 +2,7 @@ import { Either } from '@/core';
 import { FieldValidation } from '../common/FieldValidation';
 import { ValidationError } from '../common/ValidationError';
 
-export interface Validation {
+interface Validation {
   validate: (fieldName: string, input: object) => Either<ValidationError[], boolean>;
 }
 
