@@ -1,15 +1,22 @@
 ﻿{
-  "exclude": ["node_modules"],
-  "include": ["packages/core","packages/infra"],
+  "exclude": ["node_modules","./packages/ui", "reports","coverage"],
+  "include": ["./packages/core","./packages/infra"],
   "compilerOptions": {
-    "skipLibCheck": true, //Evita que se haga la documentación de la carpeta node_modules
-    "module": "commonjs",
-    "target": "es6",
-    "baseUrl": ".",
+    "target": "es2015",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
     "types": ["jest"],
-    "jsx": "react-jsx",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./packages/*"]
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Either } from '@/domain/common/Either';
+import { Either } from '@/core';
 import { FieldValidation } from '../common/FieldValidation';
 import { ValidationError } from '../common/ValidationError';
 

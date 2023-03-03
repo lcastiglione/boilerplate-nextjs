@@ -1,4 +1,4 @@
-import { Either } from '@/domain/common/Either';
+import { Either } from '@/core';
 import { FieldValidation, InvalidFieldError } from '../common';
 
 export class MinLengthValidation implements FieldValidation {

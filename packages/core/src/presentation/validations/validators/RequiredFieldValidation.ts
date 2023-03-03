@@ -1,4 +1,4 @@
-import { Either } from '@/domain/common/Either';
+import { Either } from '@/core';
 import { FieldValidation, RequiredFieldError } from '../common';
 
 export class RequiredFieldValidation implements FieldValidation {
