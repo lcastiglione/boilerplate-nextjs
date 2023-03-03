@@ -4,7 +4,6 @@ import { ValidationError } from "./ValidationError"
 /**
  * Interfaz que representa una regla de validación para un campo.
  *
- * @interface
  */
 export interface FieldValidation {
   /**

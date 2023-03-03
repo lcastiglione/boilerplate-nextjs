@@ -1,7 +1,6 @@
 ﻿/**
  * Interfaz que representa un error de campo requerido.
  *
- * @interface
  */
 export interface RequiredFieldError {
   /**
@@ -21,7 +20,6 @@ export interface RequiredFieldError {
 /**
  * Interfaz que representa un error de campo inválido.
  *
- * @interface
  */
 export interface InvalidFieldError {
   /**
