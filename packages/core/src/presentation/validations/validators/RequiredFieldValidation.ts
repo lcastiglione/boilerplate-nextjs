@@ -1,5 +1,5 @@
-import { Either } from '@/core';
-import { FieldValidation, RequiredFieldError } from '../common';
+import { Either } from "@core/domain/common"
+import { FieldValidation, RequiredFieldError } from '@core/presentation/validations/common';
 
 /**
  * Clase que implementa la validación de un campo requerido
@@ -20,11 +20,12 @@ export class RequiredFieldValidation implements FieldValidation {
    */
   validate(input: any): Either<RequiredFieldError, boolean> {
     return input[this.field]
-      ? Either.left({
-          tag: 'InvalidFieldError',
-          message: 'Obligatory field',
-          field: this.field,
-        })
-      : Either.right(true);
+      ? Either.right(true)
+      : Either.left({
+        tag: 'InvalidFieldError',
+        message: 'Obligatory field',
+        field: this.field,
+      })
   }
 }
+
