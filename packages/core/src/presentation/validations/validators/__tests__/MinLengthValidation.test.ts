@@ -1,4 +1,4 @@
-﻿import { Either, InvalidFieldError, MinLengthValidation } from '@/core';
+﻿import { MinLengthValidation } from '@core/presentation/validations/validators';
 
 describe('MinLengthValidation', () => {
   const field = 'myField';
@@ -7,7 +7,7 @@ describe('MinLengthValidation', () => {
 
   it('should return left if field length is less than minLength', () => {
     const input = { [field]: '1234' };
-    const result: Either<InvalidFieldError, boolean> = sut.validate(input);
+    const result= sut.validate(input);
     expect(result.isLeft()).toBe(true);
     result.fold(
       (err) =>

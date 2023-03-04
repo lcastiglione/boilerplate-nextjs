@@ -1,5 +1,4 @@
-﻿import { Either } from '@/core';
-import { CompareFieldsValidation } from './../CompareFieldsValidation';
+﻿import { CompareFieldsValidation } from '@core/presentation/validations/validators';
 
 describe('CompareFieldsValidation', () => {
   it('should return true if values are equal', () => {
@@ -9,7 +8,11 @@ describe('CompareFieldsValidation', () => {
       fieldToCompare: 'value',
     };
     const result = sut.validate(input);
-    expect(result).toEqual(Either.right(true));
+    expect(result.isRight()).toBe(true);
+    result.fold(
+      () => {},
+      (value) => expect(value).toBeTruthy()
+    );
   });
 
   it('should return InvalidFieldError if values are different', () => {
@@ -19,12 +22,15 @@ describe('CompareFieldsValidation', () => {
       fieldToCompare: 'value2',
     };
     const result = sut.validate(input);
-    expect(result).toEqual(
-      Either.left({
-        tag: 'InvalidFieldError',
-        message: 'Invalid value',
-        field: 'field',
-      })
+    expect(result.isLeft()).toBe(true);
+    result.fold(
+      (err) =>
+        expect(err).toEqual({
+          tag: 'InvalidFieldError',
+          message: 'Invalid value',
+          field:'field',
+        }),
+      () => {}
     );
   });
 });
