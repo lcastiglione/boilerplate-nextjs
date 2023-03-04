@@ -1,5 +1,5 @@
-import { Either } from "@/core"
-import { ValidationError } from "./ValidationError"
+import { Either } from "@core/domain/common"
+import { ValidationError } from "@core/presentation/validations/common"
 
 /**
  * Interfaz que representa una regla de validación para un campo.

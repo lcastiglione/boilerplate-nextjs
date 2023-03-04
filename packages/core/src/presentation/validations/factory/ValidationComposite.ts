@@ -1,6 +1,5 @@
-import { Either } from '@/core';
-import { FieldValidation } from '../common/FieldValidation';
-import { ValidationError } from '../common/ValidationError';
+import { Either } from "@core/domain/common"
+import { FieldValidation, ValidationError } from '@core/presentation/validations/common';
 
 /**
  * Interfaz para una validación que se puede aplicar a un campo.

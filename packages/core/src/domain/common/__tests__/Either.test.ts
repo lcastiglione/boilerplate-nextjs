@@ -1,4 +1,4 @@
-﻿import { Either } from '../Either';
+﻿import { Either } from '@core/domain/common';
 
 export interface ApiFailure {
   tag: 'ApiFailure';

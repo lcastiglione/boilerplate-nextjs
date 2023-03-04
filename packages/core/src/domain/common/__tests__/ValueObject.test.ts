@@ -1,4 +1,4 @@
-﻿import { ValueObject } from '../ValueObject';
+﻿import { ValueObject } from '@core/domain/common';
 
 interface PersonProps {
   firstName: string;

@@ -1,5 +1,6 @@
-import { Either } from '@/core';
-import { FieldValidation, InvalidFieldError } from '../common';
+import { Either } from "@core/domain/common"
+import { FieldValidation, InvalidFieldError } from '@core/presentation/validations/common';
+
 
 /**
  * Validación de campo que compara dos campos para verificar si sus valores son iguales.

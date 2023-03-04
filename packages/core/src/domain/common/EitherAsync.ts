@@ -1,4 +1,5 @@
-﻿import { Either } from './Either';
+﻿import { Either } from '@core/domain/common';
+
 /**
  * La clase EitherAsync representa un valor de tipo EitherValue en forma asincrónica, que puede ser un valor izquierdo de tipo L, o un valor derecho de tipo R.
  */

@@ -1,4 +1,4 @@
-﻿import { Bloc } from '../Bloc';
+﻿import { Bloc } from '@core/presentation/common';
 
 class BlocCounter extends Bloc<number> {
   constructor(initialState: number) {

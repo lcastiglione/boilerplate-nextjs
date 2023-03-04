@@ -1,5 +1,5 @@
-import { Either } from '@/core';
-import { FieldValidation, InvalidFieldError } from '../common';
+import { Either } from "@core/domain/common"
+import { FieldValidation, InvalidFieldError } from '@core/presentation/validations/common';
 
 /**
  * Validación de longitud mínima del campo

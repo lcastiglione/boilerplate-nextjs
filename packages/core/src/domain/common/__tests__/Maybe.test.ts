@@ -1,4 +1,4 @@
-﻿import { Maybe } from '../Maybe';
+﻿import { Maybe } from '@core/domain/common';
 
 describe('Maybe Class', () => {
   describe('isDefined and isEmpty', () => {

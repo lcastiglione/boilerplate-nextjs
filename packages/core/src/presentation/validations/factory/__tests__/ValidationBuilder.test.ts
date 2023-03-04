@@ -1,9 +1,9 @@
-﻿import {
+﻿import {ValidationBuilder} from "@core/presentation/validations/factory"
+import {
   CompareFieldsValidation,
   MinLengthValidation,
-  RequiredFieldValidation,
-  ValidationBuilder,
-} from '@/core';
+  RequiredFieldValidation
+} from '@core/presentation/validations/validators';
 
 describe('ValidationBuilder', () => {
   describe('field', () => {

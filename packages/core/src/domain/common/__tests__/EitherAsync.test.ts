@@ -1,5 +1,4 @@
-﻿import { Either } from '../Either';
-import { EitherAsync } from '../EitherAsync';
+﻿import { Either, EitherAsync } from '@core/domain/common';
 
 describe('EitherAsync', () => {
   describe('map', () => {

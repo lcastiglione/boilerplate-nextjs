@@ -2,8 +2,8 @@ import {
   RequiredFieldValidation,
   MinLengthValidation,
   CompareFieldsValidation,
-} from '../validators';
-import { FieldValidation } from '../common/FieldValidation';
+} from '@core/presentation/validations/validators';
+import { FieldValidation } from '@core/presentation/validations/common';
 
 /**
  * Clase para construir reglas de validación para un campo.
