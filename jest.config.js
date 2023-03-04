@@ -1,7 +1,7 @@
 ﻿module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  coverageDirectory:'./reports/coverage',
+  coverageDirectory: './reports/coverage',
   reporters: [
     'default',
     [
@@ -13,4 +13,15 @@
       },
     ],
   ],
-}
+  projects: [
+    {
+      preset: 'ts-jest',
+      testEnvironment: 'node',
+      displayName: 'core',
+      testMatch: ['<rootDir>/packages/core/src/**/*.test.ts'],
+      moduleNameMapper: {
+        "@core/(.*)": "<rootDir>/packages/core/src/$1"
+      }
+    }
+  ]
+};

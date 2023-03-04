@@ -1,6 +1,6 @@
 ﻿{
-  "exclude": ["node_modules","./packages/ui", "reports","coverage"],
-  "include": ["./packages/core","./packages/infra"],
+  "exclude": ["node_modules", "./packages/ui", "reports", "coverage"],
+  "include": ["./packages/core", "./packages/infra"],
   "compilerOptions": {
     "target": "es2015",
     "allowJs": true,
@@ -16,8 +16,7 @@
     "types": ["jest"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./packages/*"],
-      "@/core/*": ["./packages/core/*"]
+      "@core/*": ["./packages/core/src/*"]
     }
   }
 }

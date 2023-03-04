@@ -14,7 +14,8 @@
     "types": ["jest"],
     "baseUrl": ".",
     "paths": {
-      "@/core": ["."]
+      "@/*": ["./"],
+      "@core/*": ["./src/*"]
     }
   },
   "include": ["**/*.ts"],
