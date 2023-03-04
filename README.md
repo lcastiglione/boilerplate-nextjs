@@ -6,7 +6,7 @@ This boilerplate, as its name implies, uses clean architecture. The logic and th
 
 ## Prepare
 
-### Install dependencies (including sub projects) 
+### Install dependencies (including sub projects)
 
 ```shell
 pnpm install
@@ -20,6 +20,7 @@ pnpm install
 
 ```shell
 pnpm test
+pnpm test -- <Name_specific_test_file>
 ```
 
 This report is located on the path `reports/tests`
