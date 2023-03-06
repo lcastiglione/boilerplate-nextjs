@@ -4,7 +4,7 @@
   "compilerOptions": {
     "target": "es2015",
     "allowJs": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true, //Evita que se haga la documentación de la carpeta node_modules
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
